@@ -1,0 +1,15 @@
+
+完成了作业1：执行创建、设定价格、转移、购买、繁殖操作。
+             根据id查询小猫信息，根据账户id查询拥有的小猫id列表。
+
+作业2： 忘记了如何进行动态绑定，在runtime中创建类型，并在pallet中使用。需要看入门课程中的写法。
+
+作业3： 创建了容器，分别存储Kitty、个人拥有的id列表。
+pub(super) type Kitties<T: Config> = StorageMap<_, Twox64Concat, KittyIndex, Kitty<T>>;
+pub(super) type KittiesOwned<T: Config> =
+		StorageMap<_, Twox64Concat, T::AccountId, BoundedVec<KittyIndex, T::MaxKittyOwned>, ValueQuery>;
+作业4： 不明抵押和转移抵押是啥意思，没有写出来。
+
+作业5： polkadot.js上面运行成功：
+   执行创建、设定价格、转移、购买、繁殖操作。
+   根据id查询小猫信息，根据账户id查询拥有的小猫id列表。
