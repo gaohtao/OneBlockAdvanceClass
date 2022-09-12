@@ -270,7 +270,10 @@ impl pallet_template::Config for Runtime {
 parameter_types! {       // <- add this macro
     // One can own at most 9,999 Kitties
     pub const MaxKittyOwned: u32 = 9999;
+
+	pub const KittyStake: u128 = 1_000; //定义创建每只Kitty时需要质押的原生token数量
 }
+
 
 /// Configure the pallet-kitties in pallets/kitties.
 impl pallet_kitties::Config for Runtime {
@@ -278,6 +281,9 @@ impl pallet_kitties::Config for Runtime {
 	type Currency = Balances; // <-- Add this line
 	type KittyRandomness = RandomnessCollectiveFlip; // <-- ACTION: add this line.
 	type MaxKittyOwned = self::MaxKittyOwned; // <- add this line
+	type KittyIndex = u32; //定义Kitty的索引ID类型
+	type KittyStake = KittyStake; //引入KittyStake常量
+
 }
 
 // Create the runtime by composing the FRAME pallets that were previously configured.
