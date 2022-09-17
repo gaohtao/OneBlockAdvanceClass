@@ -1,0 +1,19 @@
+
+1 测试例完成了绝大部分Error的测试，为了简单起见，一个功能函数中写了多个Error测试点，这是不规范的做法，应当拆分成独立的测试函数。
+  未能实现的测试点：  KittyIndexOverflow、ExceedMaxKittyOwned
+  不知道怎么去测试最大数量。
+
+2 遇到前端读取Kitty数据方法和格式问题：
+   （1）kitty对象获取方法示例：
+    let kitty =  await api.query.kittiesModule.kitties(0).toJSON();     这是正确的。
+    let dna = await api.query.kittiesModule.kitties(0).toJSON().dna;    这是正确的。
+    
+    let kitty = api.query.kittiesModule.kitties(0)          这是错误的        
+    let kitty = api.query.kittiesModule.kitties(0).value     这也是错误的
+    
+    (2) dna数据格式错误引起小猫属性解析错误，造成图像显示不完整。
+    不知道啥原因，返回的是16进制字符串: "0xd040aa18258e03d0c6f70a6b24f88a7d"。
+    自己添加一个函数，强制转成字节数组，这样就能正确显示小猫图像了。
+       dna:  HexString2Bytes(kittyDNAs[kittyIndex].toJSON().dna),
+    
+    
